@@ -1,0 +1,47 @@
+{% extends "hr/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}employee Payroll{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-success alert-dismissable text-center">
+          <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">
+            &times;
+          </button>
+
+          <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-5 col-md-4">
+      {% block header %}
+      <h4 class="text-danger">Payroll</h4>
+      {% endblock %}
+
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            {% block update %}
+              <input class="btn btn-success btn-block" type="submit" value="Submit" />
+            {% endblock %}
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{% block title %}{% endblock %}</title>
+      <!-- Bootstrap -->
+      <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+      <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+      <link href="{% static "css/date_picker.css" %}" rel="stylesheet">
+      {% block style %}
+      <style>
+      body{
+        background-image: url("{% static 'images/home_pic.jpg' %}");
+      }
+      </style>
+      {% endblock %}
+
+      <script type="text/javascript">
+        function display_c(){
+        var refresh=1000; // Refresh rate in milli seconds
+        mytime=setTimeout('display_ct()',refresh)
+        }
+
+        function display_ct() {
+        var strcount
+        var x = new Date()
+        document.getElementById('ct').innerHTML = x;
+        tt=display_c();
+      }
+    </script>
+
+
+  </head>
+  <body onload=display_ct();>
+    <!-- body container bcontainer -->
+    <div class="container-fluid">
+
+      <!--menu mn -->
+      <!-- css inline worked here -->
+      <nav class="navbar navbar-default" role="navigation" style="margin-bottom:0px">
+        <div class="row noMargin" style="margin:0px">
+            <div class="col-md-10">
+              <!--<div class="navbar-header"><a class="navbar-brand" href="#">Home</a></div>-->
+              <div>
+                  <ul class="nav navbar-nav noMargin">
+                      <li class="active "><a  href="{% url 'home_animate' %}">Home</a></li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account & Admin<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="#">Forget Password</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="#">Employee Details</a></li>
+                              <li><a href="#">Employee Project Designation</a></li>
+                              <li><a href="#">Attendance</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project Management<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="#">Assign Project</a></li>
+                              <li><a href="#">Update Project</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">Delete Project</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Human Resources<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="{% url 'addNewAdmin_login' %}">Add New Employee</a></li>
+                              <li><a href="{% url 'updateAdmin_login' %}">Update Employee</a></li>
+                              <li><a href="{% url 'deleteEmployee_login' %}">Delete Employee</a></li>
+                              <li><a href="{% url 'employeeSearch_login' %}">Search Employee</a></li>
+                              <li class="divider"></li>
+                              <li><a href="{% url 'payrollEmployee_login' %}">Employee Payroll</a></li>
+                              <li><a href="#">Update Payroll</a></li>
+                              <li><a href="#">Delete Payroll</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">View Attendance</a></li>
+                              <li><a href="#">Query attendance</a></li>
+                              <li><a href="#">Help</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recruitment<b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="#">Applicant Registration</a></li>
+                              <li><a href="#">Query Applicants</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="">User Login</a></li>
+                      <li><a href="#">Admin Login</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Help</a></li>
+                  </ul>
+              </li>
+            </ul>
+            </div>
+        </div>
+      </nav>
+      <!-- end menu mn -->
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        {% if request.session.username %}
+        <em>Welcome,{{request.session.username}}</em><a href="{% url 'logout_admin' %}"> logout</a></h4>
+        {% endif %}
+      </div>
+        <div class="col-md-offset-5 col-md-3 " style="margin-bottom:0px">{% block date %}<span style="color:white" class="text-primary" id='ct' ></span>{% endblock %}</div>
+    </div>
+
+
+    <!-- end bcontainer -->
+    {% block content %}
+    {% endblock %}
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="{% static "js/jquery-3.1.0.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery-ui.js" %}"></script>
+    <!-- Bootstrap javascript -->
+    <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/date_picker.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/moment.js" %}"></script>
+  </body>
+</htmlome

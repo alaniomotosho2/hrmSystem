@@ -1,0 +1,54 @@
+{% extends "hr/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}employee Search{% endblock %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-5 col-md-4">
+      {% block header %}
+      <h4 class="text-danger">Search Employee</h4>
+      {% endblock %}
+
+    </div>
+  </div>
+ <div class="container">
+   <div class="row">
+     <div class="col-md-offset-9 col-md-3">
+       <img src="{{MEDIA_URL}}{{employee.employee_image.url}}" class="img-thumbnail">
+     </div>
+   </div>
+ </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed">
+        <thead><tr class="info"><td><strong>Employee Id</strong></td><td><strong>First Name</strong></td><td><strong>Second Name</strong></td><td><strong>Mobile</strong></td><td><strong>Department</strong></td>
+          <td><strong>Project</strong></td><td><strong>Date of Birth</strong></td><td><strong>Date Hired</strong></td><td><strong>Year of experience</strong></td><td><strong>Gender</strong></td>
+        </tr></thead>
+        <tbody>
+          <tr class="active"><td>{{employee.employee_id}}</td><td>{{employee.first_name}}</td><td>{{employee.last_name}}</td>
+            <td>{{employee.mobile}}</td><td>{{employee.department}}</td>
+            <td>{{employee.project}}</td><td>{{employee.dob}}</td><td>{{employee.date_hired}}</td><td>{{employee.year_experience}}</td>
+            <td>{{employee.gender}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-condensed">
+        <thead><tr class="info"><td><strong>City</strong></td><td><strong>Country</strong></td><td><strong>Baisc Pay</strong></td><td><strong>Qualification</strong></td><td><strong>Email</strong></td>
+          <td><strong>Address</strong></td><td><strong>employement_status</strong></td><td><strong>Skill Summary</strong></td>
+        </tr></thead>
+        <tbody>
+          <tr class="active"><td>{{employee.get_city_display}}</td><td>{{employee.get_country_display}}</td>
+            <td>{{employee.qualification}}</td><td>{{employee.email}}</td>
+            <td>{{employee.address}}</td><td>{{employee.employement_status}}</td><td>{{employee.skill_summary}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

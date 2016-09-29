@@ -1,0 +1,78 @@
+{% extends "hr/base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block title %}Add New Employee{% endblock %}
+{% block style %}
+<style type="text/css">
+  body{
+    background-image: none;
+  }
+
+</style>
+{% endblock %}
+{% block date %}<span style="color:blue" class="text-primary" id='ct' ></span>{% endblock %}
+{% block content %}
+
+
+{% block date_picker %}
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+<link href="{% static "css/date_picker.css" %}" rel="stylesheet">
+<script type="text/javascript" src="{% static "js/jquery-3.1.0.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/date_picker.js" %}"></script>
+<script type="text/javascript" src="{% static "js/moment.js" %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.datetimepicker1').datetimepicker({format: 'MM/DD/YYYY'});
+    });
+</script>
+{{ form.media }}
+{% endblock %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class = "alert alert-success alert-dismissable text-center">
+          <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">
+            &times;
+          </button>
+
+          <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+   <div class="row">
+     <div class="col-md-offset-5 col-md-4">
+       {% block header %}
+       <h4 class="text-danger">Add Employee</h4>
+       {% endblock %}
+
+     </div>
+   </div>
+    <div class="row">
+      <div class="container">
+
+          <div class="row">
+              <div class="col-md-offset-3 col-md-6">
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    {% block update %}
+                      <input class="btn btn-danger btn-block" type="submit" value="Submit" />
+                    {% endblock %}
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
