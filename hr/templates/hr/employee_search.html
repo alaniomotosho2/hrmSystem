@@ -6,17 +6,9 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-offset-5 col-md-4">
-      {% block header %}
-      <h4 class="text-danger">Search Employee</h4>
-      {% endblock %}
-
-    </div>
-  </div>
  <div class="container">
    <div class="row">
-     <div class="col-md-offset-9 col-md-3">
+     <div class="col-md-offset-4 col-md-3">
        <img src="{{MEDIA_URL}}{{employee.employee_image.url}}" class="img-thumbnail">
      </div>
    </div>
@@ -43,22 +35,9 @@
         </tr></thead>
         <tbody>
           <tr class="active"><td>{{employee.get_city_display}}</td><td>{{employee.get_country_display}}</td>
+            <td>{{employee.salary}}</td>
             <td>{{employee.qualification}}</td><td>{{employee.email}}</td>
             <td>{{employee.address}}</td><td>{{employee.employement_status}}</td><td>{{employee.skill_summary}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-12">
-      <table class="table table-condensed">
-        <tbody>
-          <tr class="active"><td>Employee Id: {{employee.employee_id}}</td><td>{{employee.last_name}}</td>
-            <td>{{employee.mobile}}</td><td>{{employee.department}}</td>
-            <td>{{employee.project}}</td><td>{{employee.dob}}</td><td>{{employee.date_hired}}</td><td>{{employee.year_experience}}</td>
-            <td>{{employee.gender}}</td>
-          </tr>
-          <tr>
-            Employee Name:  <td>{{employee.first_name}}</td>
           </tr>
         </tbody>
       </table>

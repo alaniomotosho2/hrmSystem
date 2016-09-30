@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee,Payroll,Department,Project,Attendance,Account,Salary,Perfomance,Training
+from .models import Employee,Payroll,Department,Project,Attendance,Account,Salary,Perfomance,Training,Leave
 
 # Register your models here.
 
@@ -38,6 +38,12 @@ class Salary_admin(admin.ModelAdmin):
     list_filter = ('salary_id','salary')
     search_fields = ('salary_id','salary')
 
+
+class Leave_admin(admin.ModelAdmin):
+    list_filter = ('employee','leave_id')
+    search_fields = ('employee','leave_id')
+
+admin.site.register(Leave,Leave_admin)
 admin.site.register(Perfomance,Perfomance_admin)
 admin.site.register(Training,Training_admin)
 admin.site.register(Salary,Salary_admin)

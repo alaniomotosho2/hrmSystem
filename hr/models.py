@@ -195,3 +195,16 @@ class Salary(models.Model):
         db_table = 'Salary'
     def __str__(self):
         return str(self.salary_id)+" "+str(self.salary)
+
+class Leave(models.Model):
+    leave_id = models.IntegerField('Leave id',primary_key=True)
+    employee = models.ForeignKey('Employee',on_delete=models.CASCADE,default=0)
+    start_date = models.DateField('Leave Start Date')
+    end_date = models.DateField('Leave End Date')
+    reason = models.TextField('Reasons')
+    leave_status = models.CharField('Leave Status',max_length=250)
+
+    class Meta:
+        db_table = 'Leave'
+    def __str__(self):
+        return str(self.leave_id)+" "+str(self.employee)

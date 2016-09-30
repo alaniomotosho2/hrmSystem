@@ -2,7 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from crispy_forms.bootstrap import AppendedText,PrependedText
-from .models import Employee,Payroll,Project,Department,Attendance,Account,Salary,Perfomance,Training
+from .models import Employee,Payroll,Project,Department,Attendance,Account,Salary,Perfomance,Training,Leave
 
 class AdminForm(forms.Form):
     username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'placeholder': 'Username'}))
@@ -74,3 +74,9 @@ class Perfomance_form(forms.ModelForm):
 #Update serach Form
 class updateEmployee_form(forms.Form):
     employee_id = forms.IntegerField(label='Enter Employee Id',required=True)
+
+
+class Leave_form(forms.ModelForm):
+    class Meta:
+        models = Leave
+        fields = ['leave_id','employee','start_date','end_date','reason']
