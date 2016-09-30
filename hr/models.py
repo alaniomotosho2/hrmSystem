@@ -65,9 +65,9 @@ class Employee(models.Model):
     first_name = models.CharField('First Name',max_length=50)
     last_name = models.CharField('Last Name',max_length=50)
     mobile = models.IntegerField('Mobile')
-    department = models.OneToOneField('Department',on_delete=models.CASCADE,default=0)
+    department = models.ForeignKey('Department',on_delete=models.CASCADE,default=0)
     account_number = models.OneToOneField('Account',on_delete=models.CASCADE,default=0)
-    salary = models.OneToOneField('Salary',on_delete=models.CASCADE)
+    salary = models.ForeignKey('Salary',on_delete=models.CASCADE)
     project = models.ForeignKey('Project')
     dob = models.DateField('Date of Birth',blank=False)
     date_hired = models.DateField('Date hired',blank=False)
@@ -134,7 +134,7 @@ class Payroll(models.Model):
     account_number = models.OneToOneField('Account',on_delete=models.CASCADE,default=0);
     employee = models.OneToOneField('Employee',on_delete=models.CASCADE,default=0)
     department = models.ForeignKey('Department',on_delete=models.CASCADE,default=0)
-    salary = models.OneToOneField('Salary',on_delete=models.CASCADE)
+    salary = models.ForeignKey('Salary',on_delete=models.CASCADE)
     allowances = models.FloatField('Allowances',null=True)
     others = models.FloatField('Others',null=True);
     loan = models.FloatField('Loan',null=True)
